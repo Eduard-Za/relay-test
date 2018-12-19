@@ -52,49 +52,52 @@ Host - Ubuntu 18.10 .
 1. Please install Docker on the machine.<br>
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
 
-2. Please install Selenoid using next commands:
-
-Selenoid is an implementation of Selenium hub using Docker containers to launch browsers.
+2. Selenoid is an implementation of Selenium hub using Docker containers to launch browsers.
 
 Please open terminal and run:
 
 <code>wget -O cm https://github.com/aerokube/cm/releases/download/1.5.6/cm_linux_amd64</code>
 
-It's Configuration manger that helps us to install Selenoid.
+It's Configuration Manger that helps us to install Selenoid.
 
-3.Please run <code>chmod +x ./cm</code>
+3. Please run <code>chmod +x ./cm</code>
 
-4.Please run<code>sudo ./cm selenoid start --vnc</code>
+4. Please run<code>sudo ./cm selenoid start --vnc</code>
 
 This command will download Selenoid release.
 
 5. Please run <code>sudo ./cm selenoid-ui start</code>
 
 This command will start status page with UI updates by SSE, backed by constant polling of status handle of selenoid on small go backend.
+![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/image.png)
 
 6. Please run <code>docker pull selenoid/vnc:chrome_70.0</code>
 and after that <code> docker pull selenoid/vnc:firefox_64.0</code>.
 
 We will use chrome_70.0 and firefox_64.0 for testing.
-(PS: It's a temporary decicion. We can download much more images).
+(PS: It's a temporary desicion. We can download much more images).
 
 7. Please check your result with result from image:
-
+![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/Screenshot%20from%202018-12-20%2000-12-55.png)
 
 
 8. Please run <code>git clone https://github.com/Eduard-Za/relay-test.git</code>.
           and <code>cd relay-test</code>.
 9. Please run test using <code>mvn clean test -Dbrowser="browser" -DbrowserVersion="browserVersion"</code>
 Please see example:
-       
+![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/part1.png)
+![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/part2.png)
+
 
 10. During the execution we can see the test run using selenoid-ui(by default: localhost:8080):
 
-But pay attention that in the code I specify:
+![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/Screenshot%20from%202018-12-20%2000-35-56.png)
+![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/Screenshot%20from%202018-12-20%2000-37-22.png)
+
+But pay attention that in the code I specified:
 <code>desiredCapabilities.setCapability("enableVNC", true);
       desiredCapabilities.setCapability("enableVideo", false);</code>
-We also can use these values as parametrs and for exaple we can enable video recording for session.    
-     
-
+      
+We also can use these values as parametrs and for exaple we can enable video recording for session through.    
 
 11. We can run test in any browser, but we should pull them before test.
