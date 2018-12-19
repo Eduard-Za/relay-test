@@ -24,14 +24,12 @@ Package <b>(src\main\java\drivers)</b> contains <b>ChromeWebDriver.class</b> whi
 Drivers are situated in the <b>(src\main\resources\chromedrivers)</b> package.
 Also, were created custom exceptions <b>(src\main\java\exceptions)</b>.
 
-Package (<b>src\main\java\utils</b>) contains:
-<ul>
-<li>PropertiesLoader.java - contains a method that helps to load properties from a property file.</li>
-</ul>
+Package (<b>src\main\java\utils</b>) contains: PropertiesLoader.java - contains a method that helps to load properties from a property file.
+
 
 Package (<b>src\main\java\ui_methods</b>) contains <b>JsDragAndDrop.java</b> class which contains method <b>dragAndDrop(WebDriver driver, WebElement from, WebElement to)</b> that provides us with a possibility to emulate drag and drop for Selenium 3 and Html5.
 
-Package <b>src\main\java\api</b> contains a class with methods for interactions with API using RestAssured.
+Package <b>(src\main\java\api)</b> contains a class with methods for interactions with API using RestAssured.
 
 <h3>How to run tests in local environment:</h3>
 
