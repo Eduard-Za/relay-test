@@ -81,11 +81,12 @@ We will use chrome_70.0 and firefox_64.0 for testing.(PS: It's a temporary desic
           and <code>cd relay-test</code>.
           
 9. Please run test using <code>mvn clean test -Dbrowser="browser" -DbrowserVersion="browserVersion"</code>
-where</br>:
+<br>where:</br>
 <ul>
           <li>browser - browser name;</li>
           <li>browserVersion - version of browser;</li>
-</ul></br>    
+</ul>
+
 Please see example:
 ![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/part1.png)
 ![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/part2.png)
