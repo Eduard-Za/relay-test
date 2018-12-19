@@ -53,7 +53,7 @@ Package <b>src\main\java\api</b> contains class with methods for interactions wi
 
 <h3>How to run tests in the container</h3>
 
-As host was used Ubuntu 18.10 .
+Host - Ubuntu 18.10 .
 
 1. Please install Docker on the machine.
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
@@ -61,26 +61,46 @@ https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
 2. Please install Selenoid using next commands:
 
 Selenoid is an implementation of Selenium hub using Docker containers to launch browsers.
-No need to manually install browsers.
 
 Please open terminal and run:
 
-<code>wget -O selenoid  https://github.com/aerokube/cm/releases/download/1.5.1/cm_linux_amd64</code>
+<code>wget -O cm https://github.com/aerokube/cm/releases/download/1.5.6/cm_linux_amd64/code>
 
 It's Configuration manger that helps us to install Selenoid.
 
-(Attention!: please use 1.5.1 version).
+3.Please run <code>chmod +x ./cm</code>
 
-3.Please run <code>chmod +x ~/selenoid</code>
+4.Please run<code>sudo ./cm selenoid start --vnc</code>
 
-4.Please run<code>./selenoid selenoid start --vnc</code>
+This command will download Selenoid release.
 
-This command will download Selenoid release, browser images, generate new browsers.json, restart Selenoid and download docker images with VNC support (please see <b>enable vnc</b> property in the desiredCapabilities).
-
-5. Please run <code>./cm selenoid-ui start</code>
+5. Please run <code>sudo ./cm selenoid-ui start</code>
 
 This command will start status page with UI updates by SSE, backed by constant polling of status handle of selenoid on small go backend.
 
-6. Please run <code>git clone https://github.com/Eduard-Za/Candidate-task.git</code>.
-7.
+6. Please run <code>docker pull selenoid/vnc:chrome_70.0</code>
+and after that <code> docker pull selenoid/vnc:firefox_64.0</code>.
 
+We will use chrome_70.0 and firefox_64.0 for testing.
+(PS: It's a temporary decicion. We can download much more images).
+
+7. Please check your result with result from image:
+
+
+
+8. Please run <code>git clone https://github.com/Eduard-Za/relay-test.git</code>.
+          and <code>cd relay-test</code>.
+9. Please run test using <code>mvn clean test -Dbrowser="browser" -DbrowserVersion="browserVersion"</code>
+Please see example:
+       
+
+10. During the execution we can see the test run using selenoid-ui(by default: localhost:8080):
+
+But pay attention that in the code I specify:
+<code>desiredCapabilities.setCapability("enableVNC", true);
+      desiredCapabilities.setCapability("enableVideo", false);</code>
+We also can use these values as parametrs and for exaple we can enable video recording for session.    
+     
+
+
+11. We can run test in any browser, but we should pull them before test.
