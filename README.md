@@ -97,6 +97,6 @@ Please, pay attention that in the code, I specified:
 <code>desiredCapabilities.setCapability("enableVNC", true);
       desiredCapabilities.setCapability("enableVideo", false);</code>
       
-We also can use these values as parametrs and for exaple we can enable video recording for session through.    
+We also can use these values as parameters and for example we can enable video recording for a session through command line.    
 
 
