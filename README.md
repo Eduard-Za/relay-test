@@ -36,7 +36,7 @@ Package (<b>src\main\java\utils</b>) contains:
 Package (<b>src\main\java\ui_methods</b>) contains <b>JsDragAndDrop.java</b> class which provides us with possibility
 to emulate drag and drop for Selenium 3 and Html5.
 
-Packeage <br>src\main\java\api</br> contains class with methods for interactions with API using RestAssured.
+Package <b>src\main\java\api</b> contains class with methods for interactions with API using RestAssured.
 
 <h3>How to run tests in local environment:</h3>
 
@@ -63,12 +63,24 @@ https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
 Selenoid is an implementation of Selenium hub using Docker containers to launch browsers.
 No need to manually install browsers.
 
+Please open terminal and run:
 
+<code>wget -O selenoid  https://github.com/aerokube/cm/releases/download/1.5.1/cm_linux_amd64</code>
 
-<h3> Allure report</h3>
-<p>After executing previous commands, please run:</p>
-<code>mvn allure:serve</code><br/>
-</br>
+It's Configuration manger that helps us to install Selenoid.
 
+(Attention!: please use 1.5.1 version).
 
-Please send all questions to eduardos1218@gmail.com.
+3.Please run <code>chmod +x ~/selenoid</code>
+
+4.Please run<code>./selenoid selenoid start --vnc</code>
+
+This command will download Selenoid release, browser images, generate new browsers.json, restart Selenoid and download docker images with VNC support (please see <b>enable vnc</b> property in the desiredCapabilities).
+
+5. Please run <code>./cm selenoid-ui start</code>
+
+This command will start status page with UI updates by SSE, backed by constant polling of status handle of selenoid on small go backend.
+
+6. Please run <code>git clone https://github.com/Eduard-Za/Candidate-task.git</code>.
+7.
+
