@@ -1,9 +1,8 @@
 # Test Automation Engineer testing task
 Test Automation Engineer - UI testing task.
 
-This project contains automation test which checks if the user is in an audience.
-And also contains instructions which describe how to run this test in a container.
-instances etc.
+
+This project contains an automation test which checks if the user is in an audience and instructions which describe how to run this test in a container, how to install environment.
 
 <h3>Technology stack includes:</h3>
 <ul>
@@ -23,20 +22,18 @@ instances etc.
 <h3>Description of project structure</h3>
 
 Test <b>(src\test\java\MainTest.java)</b> was written using Selenide and Page Object pattern <b>(src\main\java\pages)</b>.
-Package <b>(src\main\java\drivers)</b> contains <b>ChromeWebDriver.class</b> which provides us with the possibility to
-run tests in Windows, Linux, Mac environments (method - <b>getWebDriverInstance()</b>). 
-Drivers are situated in the <b>(src\main\resources\chromedrivers)</b>.
+Package <b>(src\main\java\drivers)</b> contains <b>ChromeWebDriver.class</b> which contains static <b>getWebDriverInstance()</b> method and provides us with the possibility to run tests in Windows, Linux, Mac environments. 
+Drivers are situated in the <b>(src\main\resources\chromedrivers)</b> package.
 Also, were created custom exceptions <b>(src\main\java\exceptions)</b>.
 
 Package (<b>src\main\java\utils</b>) contains:
 <ul>
-<li>PropertiesLoader.java - contains method that helps to load properties from property file.</li>
+<li>PropertiesLoader.java - contains a method that helps to load properties from a property file.</li>
 </ul>
 
-Package (<b>src\main\java\ui_methods</b>) contains <b>JsDragAndDrop.java</b> class which provides us with possibility
-to emulate drag and drop for Selenium 3 and Html5.
+Package (<b>src\main\java\ui_methods</b>) contains <b>JsDragAndDrop.java</b> class which contains method <b>dragAndDrop(WebDriver driver, WebElement from, WebElement to)</b> that provides us with a possibility to emulate drag and drop for Selenium 3 and Html5.
 
-Package <b>src\main\java\api</b> contains class with methods for interactions with API using RestAssured.
+Package <b>src\main\java\api</b> contains a class with methods for interactions with API using RestAssured.
 
 <h3>How to run tests in local environment:</h3>
 
@@ -47,7 +44,7 @@ Package <b>src\main\java\api</b> contains class with methods for interactions wi
 
 <h3>How to run tests in the container</h3>
 
-Host - Ubuntu 18.10 .
+Host - Ubuntu 18.10.
 
 1. Please install Docker on the machine.<br>
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
@@ -58,7 +55,7 @@ Please open terminal and run:
 
 <code>wget -O cm https://github.com/aerokube/cm/releases/download/1.5.6/cm_linux_amd64</code>
 
-It's Configuration Manger that helps us to install Selenoid.
+It's Configuration Manager that helps us to install Selenoid.
 
 3. Please run <code>chmod +x ./cm</code>
 
@@ -71,19 +68,24 @@ This command will download Selenoid release.
 This command will start status page with UI updates by SSE, backed by constant polling of status handle of selenoid on small go backend.
 ![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/image.png)
 
-6. Please run <code>docker pull selenoid/vnc:chrome_70.0</code>
-and after that <code> docker pull selenoid/vnc:firefox_64.0</code>.
+6. Please run <code>docker pull selenoid/vnc:chrome_70.0</code><br>
+and after that <code>docker pull selenoid/vnc:firefox_64.0</code>.
 
-We will use chrome_70.0 and firefox_64.0 for testing.
-(PS: It's a temporary desicion. We can download much more images).
+We will use chrome_70.0 and firefox_64.0 for testing.(PS: It's a temporary desicion. We can download much more images).
 
-7. Please check your result with result from image:
+7. Please check your result with result from image:</br>
 ![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/Screenshot%20from%202018-12-20%2000-12-55.png)
 
 
-8. Please run <code>git clone https://github.com/Eduard-Za/relay-test.git</code>.
+8. Please run <code>git clone https://github.com/Eduard-Za/relay-test.git</code><br>
           and <code>cd relay-test</code>.
+          
 9. Please run test using <code>mvn clean test -Dbrowser="browser" -DbrowserVersion="browserVersion"</code>
+where</br>:
+<ul>
+          <li>browser - browser name;</li>
+          <li>browserVersion - version of browser;</li>
+</ul></br>    
 Please see example:
 ![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/part1.png)
 ![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/part2.png)
@@ -94,10 +96,10 @@ Please see example:
 ![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/Screenshot%20from%202018-12-20%2000-35-56.png)
 ![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/Screenshot%20from%202018-12-20%2000-37-22.png)
 
-But pay attention that in the code I specified:
+Please, pay attention that in the code, I specified:
 <code>desiredCapabilities.setCapability("enableVNC", true);
       desiredCapabilities.setCapability("enableVideo", false);</code>
       
 We also can use these values as parametrs and for exaple we can enable video recording for session through.    
 
-11. We can run test in any browser, but we should pull them before test.
+
