@@ -1,6 +1,4 @@
 # Test Automation Engineer testing task
-Test Automation Engineer - UI testing task.
-
 
 This project contains an automation test which checks if the user is in an audience and instructions which describe how to run this test in a container, how to install environment.
 
