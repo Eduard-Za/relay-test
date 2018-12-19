@@ -24,6 +24,7 @@ public class Header extends BasePage {
 
     public static AudiencePage toDataManagment(WebDriver driver) {
         $(dataManagment).waitUntil(Condition.appear, 3000)
+                .waitUntil(visible, 5000)
                 .waitUntil(Condition.enabled, 3000).click();
         return new AudiencePage(driver);
     }

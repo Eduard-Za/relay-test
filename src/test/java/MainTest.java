@@ -19,7 +19,6 @@ import static pages.LoginPage.login;
 
 public class MainTest extends BaseTest {
 
-
     @Test
     public void checkUserIsInAudience() {
 
