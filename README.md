@@ -88,7 +88,7 @@ Please see example:
 ![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/part2.png)
 
 
-10. During the execution we can see the test run using selenoid-ui(by default: localhost:8080):
+10. During the execution, we can see the test run using selenoid-ui(by default: localhost:8080):
 
 ![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/Screenshot%20from%202018-12-20%2000-35-56.png)
 ![alt](https://github.com/Eduard-Za/relay-test/blob/master/images/Screenshot%20from%202018-12-20%2000-37-22.png)
@@ -97,6 +97,6 @@ Please, pay attention that in the code, I specified:
 <code>desiredCapabilities.setCapability("enableVNC", true);
       desiredCapabilities.setCapability("enableVideo", false);</code>
       
-We also can use these values as parameters and for example we can enable video recording for a session through command line.    
+We also can use these values as parameters and for example, we can enable video recording for a session through a command line.
 
-
+If you have any questions, please ask eduardos1218@gmail.com .
