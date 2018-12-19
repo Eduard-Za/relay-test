@@ -45,17 +45,11 @@ Package <b>src\main\java\api</b> contains class with methods for interactions wi
 <code> cd relay-test</code><br/>
 <code> mvn clean test</code><br/>
 
-<p>Please open a terminal and run next commands:</p>
-<code>git clone https://github.com/Eduard-Za/UI-Selenium-task.git</code><br/>
-<code> cd UI-Selenium-task</code><br/>
-<code> mvn clean test</code><br/>
-<br> 
-
 <h3>How to run tests in the container</h3>
 
 Host - Ubuntu 18.10 .
 
-1. Please install Docker on the machine.
+1. Please install Docker on the machine.<br>
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
 
 2. Please install Selenoid using next commands:
@@ -64,7 +58,7 @@ Selenoid is an implementation of Selenium hub using Docker containers to launch 
 
 Please open terminal and run:
 
-<code>wget -O cm https://github.com/aerokube/cm/releases/download/1.5.6/cm_linux_amd64/code>
+<code>wget -O cm https://github.com/aerokube/cm/releases/download/1.5.6/cm_linux_amd64</code>
 
 It's Configuration manger that helps us to install Selenoid.
 
