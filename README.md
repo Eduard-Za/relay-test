@@ -42,6 +42,21 @@ Package <b>(src\main\java\api)</b> contains a class with methods for interaction
 
 Host - Ubuntu 18.10.
 
+<b>BEFORE EXPLANATION:</b>
+
+You can run test using only one simple bash script - <b>script.sh</b>
+
+Please run <code>git clone https://github.com/Eduard-Za/relay-test.git</code><br>
+           <code>cd relay-test</code><br>
+           <code>sudo chmod +x script.sh</code>.<br>
+           <code>./script.sh browsername numberOfVersion</code><br> 
+           
+           Please use: ./script.sh chrome 70.
+              
+              
+<b>Or you can use step by step description:</b>
+
+
 1. Please install Docker on the machine.<br>
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
 
@@ -98,5 +113,13 @@ Please, pay attention that in the code, I specified:
       desiredCapabilities.setCapability("enableVideo", false);</code>
       
 We also can use these values as parameters and for example, we can enable video recording for a session through a command line.
+
+<b>IF SOMETHING GOES WRONG</b>
+Please use <br>
+<code>docker stop selenoid</br>
+docker stop selenoid-ui</br>
+./cm selenoid start --force</code>
+
+please, resolve conflicts and run test again.
 
 If you have any questions, please ask eduardos1218@gmail.com .
