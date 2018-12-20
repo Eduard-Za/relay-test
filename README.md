@@ -116,9 +116,9 @@ We also can use these values as parameters and for example, we can enable video 
 
 <b>IF SOMETHING GOES WRONG</b>
 Please use <br>
-<code>docker stop selenoid</br>
-docker stop selenoid-ui</br>
-./cm selenoid start --force</code>
+<code>docker stop selenoid</code><br>
+<code>docker stop selenoid-ui</code><br>
+<code>./cm selenoid start --force</code>
 
 please, resolve conflicts and run test again.
 
