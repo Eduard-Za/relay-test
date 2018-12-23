@@ -1,7 +1,7 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
-import org.openqa.selenium.By;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import utils.PropertiesLoader;
 
@@ -11,6 +11,8 @@ import static pages.LeftMenu.actionsAdd;
 import static ui_methods.JsDragAndDrop.dragAndDrop;
 
 public class AudiencePage extends BasePage {
+
+    private static final Log LOG = LogFactory.getLog(AudiencePage.class);
 
     /*data from property file*/
     public static final String audienceNameValue = PropertiesLoader.loadProperty("audience.name");
@@ -44,11 +46,13 @@ public class AudiencePage extends BasePage {
         $(next).waitUntil(visible, 4000)
                 .waitUntil(visible, 4000)
                 .waitUntil(enabled, 5000).click();
+        LOG.info("Audience with name '" + audienceNameValue + "' and desciption '" + audienceDescriptionValue + "' was created");
     }
 
     public String getApiName() {
         return $(apiIdentifier)
                 .waitUntil(appear, 5000)
+                .waitUntil(exist, 5000)
                 .waitUntil(exist, 5000)
                 .waitUntil(visible, 5000).getText();
     }

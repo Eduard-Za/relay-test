@@ -3,6 +3,8 @@ package api;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import scheme.Enters;
 import utils.PropertiesLoader;
 
@@ -23,6 +25,9 @@ import static io.restassured.http.ContentType.JSON;
 public class ApiInterractions {
     private static UUID uuid;
 
+    private static final Log LOG = LogFactory.getLog(ApiInterractions.class);
+
+
     /**
      * Static method emulates a visit.
      */
@@ -42,7 +47,8 @@ public class ApiInterractions {
                 .statusCode(200)
                 .extract()
                 .response();
-
+        LOG.info( "Emulate visiting: " + ApiInterractions.class.getSimpleName() + " Response with code "
+                + response.getStatusCode());
     }
 
     /**
@@ -66,6 +72,8 @@ public class ApiInterractions {
                 .response();
         Enters[] arrayEnters = response.as(Enters[].class);
         List<Enters> entersList = Arrays.asList(arrayEnters);
+        LOG.info(ApiInterractions.class.getSimpleName() + " Response with code "
+                + response.getStatusCode() + " and response body as list of " + entersList.getClass().getSimpleName());
         return entersList;
     }
 }

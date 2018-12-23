@@ -1,11 +1,12 @@
 package pages;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.PropertiesLoader;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.dismiss;
 
 public class LoginPage extends BasePage {
 
@@ -15,18 +16,20 @@ public class LoginPage extends BasePage {
     private static By passwordField = By.cssSelector("input[name=password]");
     private static By signInBtn = By.cssSelector("button[type=submit]");
 
+    private static final Log LOG = LogFactory.getLog(LoginPage.class);
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
     public static void login() {
-        logger.info("Login");
         String login = PropertiesLoader.loadProperty("credentials.username");
         String pass = PropertiesLoader.loadProperty("credentials.password");
         $(usernameField).setValue(login);
         $(passwordField).setValue(pass);
         $(signInBtn).submit();
+        LOG.info(LoginPage.class.getSimpleName() + " - Successfull login");
     }
 
 
