@@ -32,7 +32,9 @@ public class LeftMenu extends BasePage {
      */
     public static void deleteIfPresent(String name, Type type) {
 
+
         LOG.info("Delete '" + name + "' with type " + type + " after test");
+
         By elementToDelete = By.xpath(String.format("//*[contains(text(), '%s')]", name));
         By delete = By.xpath("//button[@title='Delete " + type.getTab() + "']");
         try {

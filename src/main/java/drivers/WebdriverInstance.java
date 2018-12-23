@@ -31,21 +31,25 @@ public class WebdriverInstance {
         String driverProperty = null;
         String driverPath = null;
         WebDriver driver = null;
-        switch (os) {
-            case "Windows":
-            case "Mac":
-                driverPath = PropertiesLoader.loadProperty(Drivers.valueOf(os).getPath());
-                driverProperty = "webdriver.chrome.driver";
-                System.setProperty(driverProperty, driverPath);
-                driver = new ChromeDriver();
-                break;
-            case "Linux":
-                driverProperty = "webdriver.gecko.driver";
-                driverPath = PropertiesLoader.loadProperty(Drivers.Linux.getPath());
-                System.setProperty(driverProperty, driverPath);
-                driver = new FirefoxDriver();
-                break;
+        if (os.contains("Windows") ) {
+            driverPath = PropertiesLoader.loadProperty(Drivers.WINDOWS.getPath());
+            driverProperty = "webdriver.chrome.driver";
+            System.setProperty(driverProperty, driverPath);
+            driver = new ChromeDriver();
+        }else if(os.contains("Mac")){
+            driverPath = PropertiesLoader.loadProperty(Drivers.MAC.getPath());
+            driverProperty = "webdriver.chrome.driver";
+            System.setProperty(driverProperty, driverPath);
+            driver = new ChromeDriver();
+        } else if (os.contains("Linux")) {
+            driverProperty = "webdriver.gecko.driver";
+            driverPath = PropertiesLoader.loadProperty(Drivers.Linux.getPath());
+            System.setProperty(driverProperty, driverPath);
+            driver = new FirefoxDriver();
+        } else {
+            throw new UnknownOsException("Unsupported OS");
         }
+        LOG.info(driver.getClass().getSimpleName() + " was set");
         return driver;
     }
 }

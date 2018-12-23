@@ -1,6 +1,6 @@
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
-import drivers.ChromeWebDriver;
+import drivers.WebdriverInstance;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
@@ -43,7 +43,7 @@ public class BaseTest {
             LOG.info("Desired capabilities {} " + desiredCapabilities + " for driver for Selenoid");
             driver = new RemoteWebDriver(URI.create(PropertiesLoader.loadProperty("url.to.server")).toURL(), desiredCapabilities);
         } else {
-            driver = ChromeWebDriver.getWebDriverInstance();
+            driver = WebdriverInstance.getWebDriverInstance();
         }
         LOG.info(driver.getClass().getSimpleName() + " was created");
         WebDriverRunner.setWebDriver(driver);
@@ -53,16 +53,19 @@ public class BaseTest {
 
     @AfterMethod
     public void tearDown() {
-        deleteTestDataAfterTestViaUI();
-        if (driver != null) {
-            driver.close();
-            driver.quit();
+        try {
+            deleteTestDataAfterTestViaUI();
+        } finally {
+            if (driver != null) {
+                driver.close();
+                driver.quit();
+            }
         }
         LOG.info(driver.getClass().getSimpleName() + " was closed");
     }
 
-
     private void deleteTestDataAfterTestViaUI() {
+        Header.toAudiences(driver);
         LeftMenu.deleteIfPresent(audienceNameValue, AUDIENCES);
         Header.toEngagements();
         LeftMenu.deleteIfPresent(engagementName, ENGAGEMENTS);

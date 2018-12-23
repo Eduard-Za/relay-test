@@ -30,8 +30,8 @@ public class EngagementPage extends BasePage {
     }
 
     public static void createEngagement() {
-        $(actionsAdd).waitUntil(visible, 5000).click();
-        $(engagementNameField).waitUntil(appear, 5000).setValue(engagementName);
+        $(actionsAdd).waitUntil(appear, 5000).waitUntil(visible, 5000).click();
+        $(engagementNameField).waitUntil(appear, 5000).waitUntil(visible, 5000).setValue(engagementName);
         $(descriptionField).setValue(engagementDescription);
         $(submitButtom).click();
         $(submitButtom).waitUntil(disappear, 5000);
