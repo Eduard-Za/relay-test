@@ -43,16 +43,15 @@ public class AudiencePage extends BasePage {
         dragAndDrop(driver, $(dragFrom), $(dragTo));
         $(next).waitUntil(visible, 1000).click();
         $(next).waitUntil(visible, 1000).click();
-        $(next).waitUntil(visible, 4000)
+        $(next).waitUntil(appear, 4000)
                 .waitUntil(visible, 4000)
                 .waitUntil(enabled, 5000).click();
-        LOG.info("Audience with name '" + audienceNameValue + "' and desciption '" + audienceDescriptionValue + "' was created");
+        LOG.info("Audience with name '" + audienceNameValue + "' and description '" + audienceDescriptionValue + "' was created");
     }
 
     public String getApiName() {
         return $(apiIdentifier)
                 .waitUntil(appear, 5000)
-                .waitUntil(exist, 5000)
                 .waitUntil(exist, 5000)
                 .waitUntil(visible, 5000).getText();
     }

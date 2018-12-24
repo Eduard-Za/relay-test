@@ -47,7 +47,7 @@ public class ApiInterractions {
                 .statusCode(200)
                 .extract()
                 .response();
-        LOG.info( "Emulate visiting: " + ApiInterractions.class.getSimpleName() + " Response with code "
+        LOG.info("Emulate visiting: " + ApiInterractions.class.getSimpleName() + " Response with code "
                 + response.getStatusCode());
     }
 

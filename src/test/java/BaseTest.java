@@ -4,6 +4,9 @@ import drivers.WebdriverInstance;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterMethod;
@@ -33,17 +36,30 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"browser", "browserVersion"})
     public void setUp(@Optional String browser, @Optional String browserVersion) throws MalformedURLException {
-        if (browser != null || browserVersion != null) {
-            LOG.info("Method called with args {}" + browser + " and " + browserVersion + " for Selenoid");
-            DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-            desiredCapabilities.setBrowserName(browser);
-            desiredCapabilities.setVersion(browserVersion);
-            desiredCapabilities.setCapability("enableVNC", true);
-            desiredCapabilities.setCapability("enableVideo", false);
-            LOG.info("Desired capabilities {} " + desiredCapabilities + " for driver for Selenoid");
-            driver = new RemoteWebDriver(URI.create(PropertiesLoader.loadProperty("url.to.server")).toURL(), desiredCapabilities);
+        if (browser != null && browserVersion != null) {
+
+            if (browser.equals("headless") && browserVersion.equals("1")) {
+                LOG.info("Method called with args {} " + browser + " and " + browserVersion + " for HEADLESS RUN");
+                FirefoxBinary firefoxBinary = new FirefoxBinary();
+                String driverPath = PropertiesLoader.loadProperty("geckodriver.path.linux");
+                String DRIVER = "webdriver.gecko.driver";
+                System.setProperty(DRIVER, driverPath);
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.setHeadless(true);
+                firefoxOptions.setBinary(firefoxBinary);
+                driver = new FirefoxDriver(firefoxOptions);
+            } else {
+                LOG.info("Method called with args {}" + browser + " and " + browserVersion + " for Selenoid");
+                DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                desiredCapabilities.setBrowserName(browser);
+                desiredCapabilities.setVersion(browserVersion);
+                desiredCapabilities.setCapability("enableVNC", true);
+                desiredCapabilities.setCapability("enableVideo", false);
+                LOG.info("Desired capabilities {} " + desiredCapabilities + " for driver for Selenoid");
+                driver = new RemoteWebDriver(URI.create(PropertiesLoader.loadProperty("url.to.server")).toURL(), desiredCapabilities);
+            }
         } else {
-            driver = WebdriverInstance.getWebDriverInstance();
+            driver = WebdriverInstance.getLocalWebDriverInstance();
         }
         LOG.info(driver.getClass().getSimpleName() + " was created");
         WebDriverRunner.setWebDriver(driver);
@@ -58,7 +74,6 @@ public class BaseTest {
         } finally {
             if (driver != null) {
                 driver.close();
-                driver.quit();
             }
         }
         LOG.info(driver.getClass().getSimpleName() + " was closed");

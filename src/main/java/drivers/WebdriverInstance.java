@@ -21,11 +21,11 @@ public class WebdriverInstance {
     private static final Log LOG = LogFactory.getLog(WebdriverInstance.class);
 
     /**
-     * Static method checks for the system name and sets the system driver properties.
+     * The static method checks for the system name and sets the system driver properties.
      *
      * @return new proper Driver instance.
      */
-    public static WebDriver getWebDriverInstance() {
+    public static WebDriver getLocalWebDriverInstance() {
         LOG.info(WebdriverInstance.class.getSimpleName() + " Set driver");
         String os = System.getProperty(OS);
         String driverProperty = null;

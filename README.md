@@ -51,7 +51,7 @@ Please run <code>git clone https://github.com/Eduard-Za/relay-test.git</code><br
            <code>sudo chmod +x script.sh</code>.<br>
            <code>./script.sh browsername numberOfVersion</code><br> 
            
-           Please use: ./script.sh chrome 70.
+           Please use: ./script.sh chrome 70.0
               
               
 <b>Or you can use step by step description:</b>

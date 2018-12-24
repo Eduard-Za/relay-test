@@ -10,7 +10,7 @@ public enum Drivers {
 
     WINDOWS("Windows", "chromedriver.path.windows"),
     MAC("Mac", "chromedriver.path.mac"),
-    Linux("Linux", "chromedriver.path.linux");
+    Linux("Linux", "geckodriver.path.linux");
 
     private final String path;
     private final String osName;
