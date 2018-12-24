@@ -20,8 +20,8 @@ This project contains an automation test which checks if the user is in an audie
 <h3>Description of project structure</h3>
 
 Test <b>(src\test\java\MainTest.java)</b> was written using Selenide and Page Object pattern <b>(src\main\java\pages)</b>.
-Package <b>(src\main\java\drivers)</b> contains <b>ChromeWebDriver.class</b> which contains static <b>getWebDriverInstance()</b> method and provides us with the possibility to run tests in Windows, Linux, Mac environments. 
-Drivers are situated in the <b>(src\main\resources\chromedrivers)</b> package.
+Package <b>(src\main\java\drivers)</b> contains <b>WebDriverInstance.class</b> which contains static <b>getLocalDriver()</b> method and provides us with the possibility to run tests in Windows, Linux, Mac environments. 
+Drivers are situated in the <b>(src\main\resources\drivers)</b> package.
 Also, were created custom exceptions <b>(src\main\java\exceptions)</b>.
 
 Package (<b>src\main\java\utils</b>) contains: PropertiesLoader.java class which include a method that helps to load properties from a property file.
@@ -31,7 +31,7 @@ Package (<b>src\main\java\ui_methods</b>) contains <b>JsDragAndDrop.java</b> cla
 
 Package <b>(src\main\java\api)</b> contains a class with methods for interactions with API using RestAssured.
 
-<h3>How to run tests in local environment:</h3>
+<h3>How to run tests in the local environment:</h3>
 
 <p>Please open a terminal and run next commands:</p>
 <code>https://github.com/Eduard-Za/relay-test.git</code><br/>
@@ -39,6 +39,42 @@ Package <b>(src\main\java\api)</b> contains a class with methods for interaction
 <code> mvn clean test</code><br/>
 
 <h3>How to run tests in the container</h3>
+
+<h3>Solution 1 - via Dockerfile configuration:</h3>
+1. Please install Docker on the machine.<br>
+https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
+2. Please install VNC viewe.<br> https://www.realvnc.com/en/connect/download/viewer/
+3. Please run <code>git clone https://github.com/Eduard-Za/relay-test.git</code><br>
+           <code>cd relay-test</code><br> .
+4. Please run <code>sudo docker build . -t relay-test:0.0.1 && docker run -p 6080:80 -p 5900:5900 relay-test:0.0.1</code></br>
+
+As base image, I used <b>dorowu/ubuntu-desktop-lxde-vnc</b>. That docker image provides HTML5 VNC interface to access Ubuntu. After execution our container will start and our vnc server which situated in the container start too.
+VNC port - <b>5090</b>.
+
+(P.S: If you want to start test using headless firefox, please uncomment:
+<code># USE IF YOU WANT TO RUN IN HEADLESS MODE</code><br>
+<code>#RUN ["chmod", "+x", "./headless.sh"]</code>
+<code>#ENTRYPOINT ["./headless.sh"]</code> in the Dockerfile.<br>
+Please, see screenshots).
+
+
+5. Please connect VNC viewer to the container (please, see image):
+image -
+
+6. Please open terminal and run next command to start test:
+
+<code>docker exec -it $(docker ps -lq) sh -c
+           "x11vnc -display :99 -localhost & export DISPLAY=:1 && mvn clean test" </code>
+
+You can observe test run using VNC viewer (please, see screenshots):
+screenshots -
+
+(If you need several instances - you can generate several instances just changing port number.For example:</br>
+<code>docker run -p 6081:80 -p 5901:5900 relay-test:0.0.1</code>) .
+
+
+
+<h3>Solution 2 - using Selenoid (at the current moment for Ubuntu only)</h3>
 
 Host - Ubuntu 18.10.
 
