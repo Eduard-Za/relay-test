@@ -17,5 +17,5 @@ WORKDIR relay-test
 
 # USE IF YOU WANT TO RUN IN HEADLESS MODE
 
-#RUN ["chmod", "+x", "./headless.sh"]
-#ENTRYPOINT ["./headless.sh"]
+# RUN ["chmod", "+x", "./headless.sh"]
+# ENTRYPOINT ["./headless.sh"]

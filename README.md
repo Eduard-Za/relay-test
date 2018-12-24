@@ -45,26 +45,24 @@ Package <b>(src\main\java\api)</b> contains a class with methods for interaction
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository</br>
 2. Please install VNC viewer.https://www.realvnc.com/en/connect/download/viewer/</br>
 3. Please run <code>git clone https://github.com/Eduard-Za/relay-test.git</code>
-              <code>cd relay-test</code>.
+              <code>cd relay-test</code>.</br>
 4. Please run <code>sudo docker build . -t relay-test:0.0.1 && docker run -p 6080:80 -p 5900:5900 relay-test:0.0.1</code></br>
 
 As base image, I used <b>dorowu/ubuntu-desktop-lxde-vnc</b>. That docker image provides HTML5 VNC interface to access Ubuntu. After execution our container will start and our vnc server which situated in the container start too.
 VNC port - <b>5090</b>. </br>
 
-(P.S: If you want to start test using headless firefox, please uncomment:
+(P.S: If you want to start test using headless firefox, please uncomment and run:
 <code># USE IF YOU WANT TO RUN IN HEADLESS MODE</code><br>
 <code>#RUN ["chmod", "+x", "./headless.sh"]</code>
 <code>#ENTRYPOINT ["./headless.sh"]</code> in the Dockerfile.<br>
 Please, see screenshots).
 
 
-5. Please connect VNC viewer to the container (please, see image):
-image -
+5. Please connect VNC viewer to the container (we specified standart 5900 port for vnc viewer).
 
-6. Please open terminal and run next command to start test:
+6. Please open terminal, run to the working directory and run next command to start test:
 
-<code>docker exec -it $(docker ps -lq) sh -c
-           "x11vnc -display :99 -localhost & export DISPLAY=:1 && mvn clean test" </code>
+<code>docker exec -it $(docker ps -lq) sh -c "x11vnc -display :99 -localhost & export DISPLAY=:1 && mvn clean test" </code>
 
 You can observe test run using VNC viewer (please, see screenshots):
 screenshots -
@@ -74,7 +72,7 @@ screenshots -
 
 
 
-<h3>Solution 2 - using Selenoid (at the current moment for Ubuntu only)</h3>
+<h3>Solution 2 - using Selenoid (at the current moment for Ubuntu only):</h3>
 
 Host - Ubuntu 18.10.
 
