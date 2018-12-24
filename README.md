@@ -51,7 +51,7 @@ https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository</b
 As base image, I used <b>dorowu/ubuntu-desktop-lxde-vnc</b>. That docker image provides HTML5 VNC interface to access Ubuntu. After execution our container will start and our vnc server, which situated in the container, start too.
 VNC port - <b>5090</b>. </br>
 
-(P.S: If you want to start test using headless firefox, please uncomment and run:
+(P.S: If you want to start test using headless firefox, please uncomment and run:</br>
 <code># USE IF YOU WANT TO RUN IN HEADLESS MODE</code></br>
 <code>#RUN ["chmod", "+x", "./headless.sh"]</code></br>
 <code>#ENTRYPOINT ["./headless.sh"]</code> in the Dockerfile.</br>
