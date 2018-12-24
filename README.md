@@ -41,15 +41,15 @@ Package <b>(src\main\java\api)</b> contains a class with methods for interaction
 <h3>How to run tests in the container</h3>
 
 <h3>Solution 1 - via Dockerfile configuration:</h3>
-1. Please install Docker on the machine.<br>
-https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
-2. Please install VNC viewe.<br> https://www.realvnc.com/en/connect/download/viewer/
-3. Please run <code>git clone https://github.com/Eduard-Za/relay-test.git</code><br>
-           <code>cd relay-test</code><br> .
+1. Please install Docker on the machine.
+https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository</br>
+2. Please install VNC viewer.https://www.realvnc.com/en/connect/download/viewer/</br>
+3. Please run <code>git clone https://github.com/Eduard-Za/relay-test.git</code>
+              <code>cd relay-test</code>.
 4. Please run <code>sudo docker build . -t relay-test:0.0.1 && docker run -p 6080:80 -p 5900:5900 relay-test:0.0.1</code></br>
 
 As base image, I used <b>dorowu/ubuntu-desktop-lxde-vnc</b>. That docker image provides HTML5 VNC interface to access Ubuntu. After execution our container will start and our vnc server which situated in the container start too.
-VNC port - <b>5090</b>.
+VNC port - <b>5090</b>. </br>
 
 (P.S: If you want to start test using headless firefox, please uncomment:
 <code># USE IF YOU WANT TO RUN IN HEADLESS MODE</code><br>
@@ -93,13 +93,11 @@ Please run <code>git clone https://github.com/Eduard-Za/relay-test.git</code><br
 <b>Or you can use step by step description:</b>
 
 
-1. Please install Docker on the machine.<br>
+1. Please install Docker on the machine.
 https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository
 
 2. Selenoid is an implementation of Selenium hub using Docker containers to launch browsers.
-
 Please open terminal and run:
-
 <code>wget -O cm https://github.com/aerokube/cm/releases/download/1.5.6/cm_linux_amd64</code>
 
 It's Configuration Manager that helps us to install Selenoid.
